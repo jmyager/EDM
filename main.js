@@ -18,10 +18,6 @@ $("#add-employee-btn").on("click", function(event) {
   $("#start-input").val("");
   $("#rate-input").val("");
 
-  // Add each employee's data into the table
-  $("#employee-table > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" +
-  empStart + "</td><td>" + "null" + "</td><td>" + empRate + "</td><td>" + "null" + "</td></tr>");
-
   // Add each employee's data to the database
   database.ref().push({
       name: empName,
@@ -30,3 +26,15 @@ $("#add-employee-btn").on("click", function(event) {
       rate: empRate
   })
 });
+
+
+// Firebase watcher
+database.ref().on("child_added", function(childSnapshot){
+    console.log(childSnapshot.val().name);
+    console.log(childSnapshot.val().role);
+    console.log(childSnapshot.val().start);
+    console.log(childSnapshot.val().rate);
+
+    $("#employee-table > tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role + "</td><td>" +
+    childSnapshot.val().start + "</td><td>" + "null" + "</td><td>" + childSnapshot.val().rate + "</td><td>" + "null" + "</td></tr>");
+})
