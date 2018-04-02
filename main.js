@@ -1,3 +1,13 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDCsNn8FxnFoDonZM8q9BB5q0Dx42tqgmY",
+    authDomain: "employee-database-manage-9059f.firebaseapp.com",
+    databaseURL: "https://employee-database-manage-9059f.firebaseio.com",
+    projectId: "employee-database-manage-9059f",
+    storageBucket: "",
+    messagingSenderId: "870438913061"
+};
+firebase.initializeApp(config);
 
 // Define firebase database
 var database = firebase.database();
