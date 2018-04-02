@@ -1,4 +1,7 @@
 
+// Define firebase database
+var database = firebase.database();
+
 //Button for adding Employees
 $("#add-employee-btn").on("click", function(event) {
   event.preventDefault();
@@ -14,8 +17,16 @@ $("#add-employee-btn").on("click", function(event) {
   $("#role-input").val("");
   $("#start-input").val("");
   $("#rate-input").val("");
-  
-  // Add each train's data into the table
+
+  // Add each employee's data into the table
   $("#employee-table > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" +
   empStart + "</td><td>" + "null" + "</td><td>" + empRate + "</td><td>" + "null" + "</td></tr>");
+
+  // Add each employee's data to the database
+  database.ref().push({
+      name: empName,
+      role: empRole,
+      start: empStart,
+      rate: empRate
+  })
 });
